@@ -1,0 +1,62 @@
+<section id="atividades" class="activities-section" aria-labelledby="atividades-titulo">
+  <div class="activities-container">
+    <div class="activities-header">
+      <h2 id="atividades-titulo" class="activities-title">Atividades do Grupo</h2>
+      <p class="activities-subtitle">
+        Confira abaixo algumas das atividades do Grupo e clique para saber mais informações:
+      </p>
+    </div>
+
+    <div
+      class="activities-carousel-wrapper"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+    >
+      <div class="carousel-viewport">
+        <div
+          class="carousel-track"
+          #carouselTrack
+          [style.transform]="getTransform()"
+          role="list"
+          aria-label="Atividades do GECS"
+        >
+          @for (activity of activities; track activity.id) {
+            <div
+              class="carousel-slide"
+              [style.flex-basis.%]="100 / slidesToShow()"
+              role="listitem"
+            >
+              <div class="slide-inner">
+                <a [routerLink]="activity.url" class="activity-card" [attr.title]="activity.title">
+                  <img
+                    [src]="activity.image"
+                    [alt]="activity.title"
+                    loading="lazy"
+                    class="activity-img"
+                  />
+                  <div class="activity-title-overlay">
+                    <h3 class="activity-name">{{ activity.title }}</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="carousel-dots" role="tablist" aria-label="Navegação do carrossel">
+        @for (activity of activities; track activity.id; let i = $index) {
+          <button
+            class="carousel-dot"
+            [class.active]="i === currentSlide()"
+            (click)="goToSlide(i)"
+            [attr.aria-label]="'Ir para ' + activity.title"
+            [attr.aria-selected]="i === currentSlide()"
+            role="tab"
+            type="button"
+          ></button>
+        }
+      </div>
+    </div>
+  </div>
+</section>

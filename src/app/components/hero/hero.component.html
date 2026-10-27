@@ -1,0 +1,33 @@
+<!-- Hero Banner Principal -->
+<section
+  class="hero-section"
+  aria-labelledby="hero-title"
+>
+  <!-- Gradiente de fundo -->
+  <div class="hero-bg-gradient" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 id="hero-title">Grupo Espírita Cairbar Schutel</h1>
+      <p class="hero-subtitle">Conheça os centros que integram nosso grupo</p>
+    </div>
+
+    <!-- Logos dos 4 Centros -->
+    <div class="hero-centers" role="list" aria-label="Nossos Centros">
+      @for (center of centers; track center.id) {
+        <a
+          [routerLink]="center.url"
+          class="hero-center-item"
+          role="listitem"
+          [attr.aria-label]="center.name"
+        >
+          <img
+            [src]="center.image"
+            [alt]="center.name"
+            loading="eager"
+          />
+        </a>
+      }
+    </div>
+  </div>
+</section>

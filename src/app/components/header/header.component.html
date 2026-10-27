@@ -1,0 +1,180 @@
+<header
+  class="masthead"
+  [class.scrolled]="scrolled()"
+  role="banner"
+>
+  <div class="header-bar">
+    <div class="branding">
+      <a routerLink="/" aria-label="Grupo Espírita Cairbar Schutel - Início">
+        <img
+          src="images/logo-cairbar-schutel.png"
+          alt="Grupo Espírita Cairbar Schutel - 60 Anos"
+          width="283"
+          height="60"
+          class="logo-img"
+        />
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="main-navigation" aria-label="Menu principal">
+      <ul class="main-nav">
+        @for (item of navItems; track item.label) {
+          <li
+            class="menu-item"
+            [class.has-children]="item.children && item.children.length > 0"
+          >
+            @if (item.href) {
+              <a
+                [routerLink]="item.href"
+                routerLinkActive="active"
+                class="menu-link"
+                (click)="closeMenu()"
+              >
+                <span>{{ item.label }}</span>
+              </a>
+            } @else {
+              <button
+                type="button"
+                class="menu-link menu-button"
+                [attr.aria-expanded]="openSubmenu() === item.label"
+                (click)="toggleSubmenu(item.label)"
+              >
+                <span>{{ item.label }}</span>
+              </button>
+            }
+
+            @if (item.children) {
+              <ul class="sub-nav">
+                @for (child of item.children; track child.href) {
+                  <li class="sub-menu-item">
+                    <a
+                      [routerLink]="child.href"
+                      (click)="closeMenu()"
+                      class="sub-menu-link"
+                    >
+                      {{ child.label }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- Quero Ajudar Button (Desktop) -->
+    <div class="header-actions">
+      <a routerLink="/quero-ajudar" class="quero-ajudar-btn">
+        Quero ajudar
+      </a>
+
+      <!-- Hamburger Button (Mobile / Tablet) -->
+      <button
+        class="mobile-toggle-btn"
+        (click)="toggleMenu()"
+        aria-label="Menu de navegação"
+        [attr.aria-expanded]="menuOpen()"
+        type="button"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Navigation Drawer -->
+<div
+  class="mobile-overlay"
+  [class.open]="menuOpen()"
+  (click)="closeMenu()"
+  aria-hidden="true"
+></div>
+
+<div class="mobile-drawer" [class.open]="menuOpen()">
+  <div class="mobile-drawer-header">
+    <img
+      src="images/logo-cairbar-schutel.png"
+      alt="GECS"
+      height="44"
+      class="mobile-logo"
+    />
+    <button
+      class="mobile-close-btn"
+      (click)="closeMenu()"
+      aria-label="Fechar menu"
+      type="button"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Menu móvel">
+    <ul class="mobile-menu-list">
+      @for (item of navItems; track item.label) {
+        <li class="mobile-menu-item">
+          @if (item.children && item.children.length > 0) {
+            <button
+              type="button"
+              class="mobile-link mobile-accordion-btn"
+              (click)="toggleSubmenu(item.label)"
+            >
+              <span>{{ item.label }}</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                [class.rotated]="openSubmenu() === item.label"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+
+            @if (openSubmenu() === item.label) {
+              <ul class="mobile-sub-menu">
+                @for (child of item.children; track child.href) {
+                  <li>
+                    <a
+                      [routerLink]="child.href"
+                      (click)="closeMenu()"
+                      class="mobile-sub-link"
+                    >
+                      {{ child.label }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          } @else {
+            <a
+              [routerLink]="item.href"
+              (click)="closeMenu()"
+              class="mobile-link"
+            >
+              {{ item.label }}
+            </a>
+          }
+        </li>
+      }
+    </ul>
+
+    <div class="mobile-action-wrap">
+      <a
+        routerLink="/quero-ajudar"
+        class="mobile-quero-ajudar-btn"
+        (click)="closeMenu()"
+      >
+        Quero ajudar
+      </a>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,107 @@
+<!-- Loading Spinner -->
+<div id="load" class="spinner-loader">
+  <div class="load-wrap">
+    <svg
+      width="75px"
+      height="75px"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="xMidYMid"
+      aria-hidden="true"
+    >
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-1"
+        rx="5"
+        ry="5"
+        transform="rotate(0 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-2"
+        rx="5"
+        ry="5"
+        transform="rotate(30 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-3"
+        rx="5"
+        ry="5"
+        transform="rotate(60 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-4"
+        rx="5"
+        ry="5"
+        transform="rotate(90 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-5"
+        rx="5"
+        ry="5"
+        transform="rotate(120 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-6"
+        rx="5"
+        ry="5"
+        transform="rotate(150 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-7"
+        rx="5"
+        ry="5"
+        transform="rotate(180 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-8"
+        rx="5"
+        ry="5"
+        transform="rotate(210 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-9"
+        rx="5"
+        ry="5"
+        transform="rotate(240 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-10"
+        rx="5"
+        ry="5"
+        transform="rotate(270 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-11"
+        rx="5"
+        ry="5"
+        transform="rotate(300 50 50) translate(0 -30)"
+      ></rect>
+      <rect
+        class="the7-spinner-animate the7-spinner-animate-12"
+        rx="5"
+        ry="5"
+        transform="rotate(330 50 50) translate(0 -30)"
+      ></rect>
+    </svg>
+  </div>
+</div>
+
+<div id="page" class="page-wrapper">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <app-header></app-header>
+
+  @if (isHomePage()) {
+    <main id="main" role="main" id="content">
+      <app-hero></app-hero>
+      <app-activities></app-activities>
+      <app-novidades></app-novidades>
+      <app-cta></app-cta>
+    </main>
+  } @else {
+    <main id="main" role="main" class="inner-page-main">
+      <router-outlet></router-outlet>
+    </main>
+  }
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,148 @@
+<div
+  id="centros"
+  class="vc_row wpb_row vc_row-fluid topo-home vc_custom_1728504668767 vc_row-has-fill"
+  data-vc-full-width="true"
+  data-vc-full-width-init="false"
+  aria-labelledby="centros-titulo"
+>
+  <div class="wpb_column vc_column_container vc_col-sm-12">
+    <div class="vc_column-inner">
+      <div class="wpb_wrapper">
+        <div class="vc_row wpb_row vc_inner vc_row-fluid">
+          <div class="wpb_column vc_column_container vc_col-sm-1">
+            <div class="vc_column-inner">
+              <div class="wpb_wrapper"></div>
+            </div>
+          </div>
+          <div class="wpb_column vc_column_container vc_col-sm-10">
+            <div class="vc_column-inner">
+              <div class="wpb_wrapper">
+                <div
+                  class="wpb_text_column wpb_content_element vc_custom_1707075134615"
+                >
+                  <div class="wpb_wrapper">
+                    <h1 id="centros-titulo" style="text-align: center">
+                      Grupo Espírita Cairbar Schutel
+                    </h1>
+                  </div>
+                </div>
+                <div class="wpb_text_column wpb_content_element">
+                  <div class="wpb_wrapper">
+                    <h3 style="text-align: center">
+                      Conheça os centros que integram nosso grupo
+                    </h3>
+                  </div>
+                </div>
+
+                <div
+                  class="centers-carousel"
+                  (mouseenter)="onMouseEnter()"
+                  (mouseleave)="onMouseLeave()"
+                >
+                  <button
+                    class="carousel-nav carousel-prev"
+                    (click)="prevSlide()"
+                    [attr.aria-label]="'Slide anterior'"
+                    type="button"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+
+                  <div
+                    class="carousel-track"
+                    #carouselTrack
+                    [style.transform]="getTransform()"
+                    role="list"
+                    aria-label="Centros do GECS"
+                  >
+                    @for (center of getVisibleCenters(); track center.id) {
+                      <div class="carousel-slide" role="listitem">
+                        <div
+                          class="wpb_single_image wpb_content_element vc_align_center"
+                        >
+                          <figure class="wpb_wrapper vc_figure">
+                            <a
+                              [routerLink]="center.url"
+                              [attr.data-dt-location]="center.url"
+                              class="vc_single_image-wrapper vc_box_border_grey"
+                            >
+                              <img
+                                [src]="center.image"
+                                [alt]="center.name"
+                                [title]="center.name"
+                                class="vc_single_image-img attachment-full"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </a>
+                          </figure>
+                        </div>
+                      </div>
+                    }
+                  </div>
+
+                  <button
+                    class="carousel-nav carousel-next"
+                    (click)="nextSlide()"
+                    [attr.aria-label]="'Próximo slide'"
+                    type="button"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+
+                  <div
+                    class="carousel-dots"
+                    role="tablist"
+                    aria-label="Navegação do carrossel"
+                  >
+                    @for (center of centers; track center.id; let i = $index) {
+                      <button
+                        class="carousel-dot"
+                        [class.active]="
+                          i >= currentSlide() &&
+                          i < currentSlide() + slidesToShow()
+                        "
+                        (click)="goToSlide(i)"
+                        [attr.aria-label]="'Ir para ' + center.name"
+                        [attr.aria-selected]="
+                          i >= currentSlide() &&
+                          i < currentSlide() + slidesToShow()
+                        "
+                        role="tab"
+                        type="button"
+                      ></button>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wpb_column vc_column_container vc_col-sm-1">
+            <div class="vc_column-inner">
+              <div class="wpb_wrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="vc_row-full-width vc_clearfix"></div>
+</div>

@@ -1,0 +1,77 @@
+<section id="novidades" class="novidades-section" aria-labelledby="novidades-titulo">
+  <div class="novidades-container">
+    <div class="novidades-header">
+      <h2 id="novidades-titulo" class="novidades-title">Novidades</h2>
+      <p class="novidades-subtitle">
+        Fique por dentro dos eventos, novidades e notícias do Cairbar Schutel:
+      </p>
+    </div>
+
+    <div class="novidades-carousel-wrapper">
+      <!-- Botão Anterior -->
+      <button
+        class="carousel-nav-btn carousel-prev-btn"
+        (click)="prevSlide()"
+        aria-label="Notícia anterior"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+
+      <!-- Viewport do Carousel -->
+      <div class="carousel-viewport">
+        <div
+          class="carousel-track"
+          #carouselTrack
+          [style.transform]="getTransform()"
+          role="list"
+          aria-label="Lista de Novidades"
+        >
+          @for (item of news; track item.id) {
+            <div
+              class="carousel-slide"
+              [style.flex-basis.%]="100 / slidesToShow()"
+              role="listitem"
+            >
+              <div class="slide-inner">
+                <article class="news-card">
+                  <div class="news-img-wrap">
+                    <span class="category-badge">{{ item.category }}</span>
+                    <a [routerLink]="item.url" class="news-img-link">
+                      <img
+                        [src]="item.image"
+                        [alt]="item.title"
+                        loading="lazy"
+                        class="news-img"
+                      />
+                    </a>
+                  </div>
+                  <div class="news-content">
+                    <h3 class="news-card-title">
+                      <a [routerLink]="item.url">{{ item.title }}</a>
+                    </h3>
+                    <time class="news-date">{{ item.date }}</time>
+                  </div>
+                </article>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Botão Próximo -->
+      <button
+        class="carousel-nav-btn carousel-next-btn"
+        (click)="nextSlide()"
+        aria-label="Próxima notícia"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
